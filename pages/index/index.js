@@ -1,6 +1,10 @@
 //index.js
 //获取应用实例
+'use strict';
+
 var app = getApp()
+var xsd = require("../../xsd/index")
+
 Page({
   data: {
     motto: 'Hello World',
@@ -22,5 +26,13 @@ Page({
         userInfo:userInfo
       })
     })
+  },
+  testApi(){
+    
+    xsd.api.get('test').then(data=>{
+      console.log(data)
+    })
+    
+    //console.log(app.globalData)
   }
 })
