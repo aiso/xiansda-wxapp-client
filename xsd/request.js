@@ -12,13 +12,24 @@ const _request = opts => {
 	  	if(res.statusCode==200)
 	  		resolve(res.data)
 	  	else{
-	  		wx.showToast({
-			  title: res.data.error.message,
-			  icon: 'error',
-			  duration: 2000
-			})
-	  		reject(res)
+	  		const msg = (!!res.data.error)?res.data.error.message:res.data
+		    wx.showModal({
+		      title: '抱歉，发生错误！',
+		      content: msg,
+		      showCancel:false,
+		      confirmText:'知道了'
+		    })
+	  		reject(msg)
 	  	}
+	  },
+	  fail:err=>{
+	    wx.showModal({
+	      title: '抱歉，发生错误！',
+	      content: err.errMsg,
+	      showCancel:false,
+	      confirmText:'知道了'
+	    })
+	  	reject(err.errMsg)
 	  }
 	}, opts)
 

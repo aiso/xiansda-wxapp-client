@@ -1,7 +1,12 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+
+    "pages/station/station",
+    "pages/station/list",
+    "pages/station/show",
+    "pages/station/map"
   ],
   "window":{
     "backgroundTextStyle":"light",

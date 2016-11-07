@@ -8,29 +8,43 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              //console.log(res.userInfo)
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
+  login(){
+    if(!!this.globalData.accessCode) 
+      return Promise.resolve(this.globalData.accessCode)
 
-          xsd.api.post('client/login', {code:'client-test'}).then(data=>{
-            console.log(data)
-            that.globalData.auth = data.user
-          })
+    const that = this
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: (res)=>{
+          that.globalData.accessCode = res.code
+          resolve(res.code)
         }
       })
-    }
+    })
+  },
+  getUserInfo(){
+    if(!!this.globalData.userInfo) 
+      return Promise.resolve(this.globalData.userInfo)
+
+    const that = this
+    return new Promise((resolve, reject) => {
+      that.login().then(()=>{
+        wx.getUserInfo({
+          success: function (res) {
+            //console.log(res.userInfo)
+            that.globalData.userInfo = res.userInfo
+            resolve(res.userInfo)
+          }
+        })
+      })
+    })
+  },
+  loginXsd(accessCode, userinfo){
+    const code = 'client-test' // 测试用
+    return xsd.api.post('client/login', {code, userinfo}).then(data=>{
+      this.globalData.auth = data.user
+      return data.user
+    })
   },
   getAuth(){
     const user = this.globalData.auth
@@ -47,6 +61,7 @@ App({
       return null
   },
   globalData:{
+    accessCode:null,
     userInfo:null,
     auth:null
   }

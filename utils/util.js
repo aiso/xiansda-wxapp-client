@@ -1,3 +1,5 @@
+const geohash = require('./geohash')
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -16,6 +18,13 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+
+function decodeGeohash(hash){
+    const latlng = geohash.decode(hash)
+    return {lng:latlng.longitude[1], lat:latlng.latitude[1]}
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  decodeGeohash
 }

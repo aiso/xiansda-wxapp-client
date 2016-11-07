@@ -1,0 +1,21 @@
+.stationView{
+  padding: 20rpx 30rpx;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  background-color: white;
+}
+
+.stationContent{
+	padding:0 20rpx;
+	flex:auto;
+}
+
+.stationName{
+  font-size: 28rpx;
+}
+
+.stationAddress{
+  font-size: 22rpx;
+  color: #b8b2b2;
+  margin-top: 10rpx;
+}
