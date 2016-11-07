@@ -2,6 +2,11 @@
 	<image src="{{station.img}}" class="border-box pane-image padding-left-right" mode="aspectFill"  />
 	<view class="pane flex-column">
 		<text class="text-h3 text-ls">{{station.name}}</text>
-		<text>{{station.address}}</text>
 	</view>
+	<view class="padding-left-right">
+		<view class="list-item">
+			<text>{{station.address}}</text>
+		</view>		
+	</view>
+
 </view>

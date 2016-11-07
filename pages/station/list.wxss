@@ -17,5 +17,4 @@
 .stationAddress{
   font-size: 22rpx;
   color: #b8b2b2;
-  margin-top: 10rpx;
 }

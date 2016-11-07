@@ -1,15 +1,19 @@
 'use strict';
 
-var xsd = require("../../xsd/index")
+const xsd = require("../../xsd/index")
 
 Page({
   data: {
-  	stations:null
+  	stations:null,
+    setupStationDisabled:true
   },
   onLoad(){
   	wx.showToast({icon:'loading', title:'载入中...'})
   	xsd.api.get('stations').then(data=>{
-  	  this.setData({stations:data.stations})
+      const stations = data.stations.map(station=>{
+        return Object.assign({icon:'circle'}, station)
+      })
+  	  this.setData({stations})
   	  wx.hideToast()
   	}).catch(()=>{
   		wx.hideToast()
@@ -17,12 +21,16 @@ Page({
   },
   switchChange(e){
   	const stations = this.data.stations.map((station, index)=>{
-  	  station.checked = (index==e.target.dataset.idx)?true:false
+  	  station.icon = (index==e.target.dataset.idx)?'success':'circle'
   	  return station
   	})
-  	this.setData({stations})
+  	this.setData({stations, setupStationDisabled:false})
   },
-  onUnload(){
-  	console.log('close')
+  setupStation(){
+    const station = this.data.stations.find(s=>s.icon=='success')
+  	xsd.api.post('client/setup/station', {station:station.id}).then(data=>{
+      getApp().globalData.auth.profile.station = station.id
+      wx.navigateBack()
+    })
   }
 })

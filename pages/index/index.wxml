@@ -1,14 +1,16 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
+<view class="page full-size flex-column flex-center">
+  <view class="page-header userinfo flex-auto">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <view class="user-welcome">
-    <text class="user-welcome-text">{{welcome}}</text>
-  </view>
 
-  <view wx:if="{{retry}}">
-  	<button bindtap="login" type="primary">重试</button>
+  <view>
+    <view class="text-center">
+      <text>{{welcome}}</text>
+    </view>
+    <view wx:if="{{retry}}" class="p20">
+      <button bindtap="login" type="primary">重试</button>  
+    </view>
   </view>
 </view>

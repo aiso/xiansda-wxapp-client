@@ -9,9 +9,10 @@
     "pages/station/map"
   ],
   "window":{
+    "backgroundColor": "#eeeeee",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "鲜时达",
     "navigationBarTextStyle":"black"
   }
 }
