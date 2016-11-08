@@ -41,7 +41,9 @@ App({
   },
   loginXsd(accessCode, userinfo){
     const code = 'client-test' // 测试用
+    console.log('11111')
     return xsd.api.post('client/login', {code, userinfo}).then(data=>{
+      console.log('222222')
       this.globalData.auth = data.user
       return data.user
     })

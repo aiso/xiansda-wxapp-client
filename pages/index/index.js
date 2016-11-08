@@ -33,8 +33,10 @@ Page({
   login(){
     app.getUserInfo().then(userInfo=>{
       this.setData({userInfo})
+      console.log(app.globalData)
       return {userInfo, accessCode:app.globalData.accessCode}
     }).then(params=>{
+      console.log(params)
       return app.loginXsd(params.accessCode, params.userInfo)
     }).then(()=>{
       console.log(app.globalData)

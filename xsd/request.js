@@ -1,14 +1,16 @@
 'use strict';
 
 const base64 = require('../utils/base64')
-const API_PATH = 'http://localhost/xiansda/1/wxapp/'
+//const API_PATH = 'http://localhost/xiansda/1/wxapp/'
+const API_PATH = 'https://xiansda.sinaapp.com/wxapp/'
 
 const _request = opts => {
+	console.log(opts)
   return new Promise((resolve, reject) => {
   	const options = Object.assign({
 	  method:'GET',
 	  success:res=>{
-	  	//console.log(res)
+	  	console.log(res)
 	  	if(res.statusCode==200)
 	  		resolve(res.data)
 	  	else{
