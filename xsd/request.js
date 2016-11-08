@@ -44,10 +44,24 @@ const _request = opts => {
   })	
 }
 
-const get = url => _request({url, method:'GET'})
+const _cache = []
+const get = (url, cache=true) => {
+	if(!!_cache[url] && _cache[url].dirty !== true)
+		return Promise.resolve(_cache[url])
+	else
+      return _request({url, method:'GET'}).then(data=>{
+        if(cache === true) 
+        	_cache[url] = data
+        return data
+      })
+}
+const dirty = url => {
+	if(!!_cache[url]) _cache[url].dirty = true
+}
 const post = (url, data) => _request({url, method:'POST', data})
 
 module.exports = {
   get,
+  dirty,
   post
 }

@@ -1,12 +1,20 @@
-<view wx:if="{{!!station}}" class="general">
-	<image src="{{station.img}}" class="border-box pane-image padding-left-right" mode="aspectFill"  />
-	<view class="pane flex-column">
-		<text class="text-h3 text-ls">{{station.name}}</text>
-	</view>
-	<view class="padding-left-right">
-		<view class="list-item">
-			<text>{{station.address}}</text>
-		</view>		
-	</view>
-
+<view wx:if="{{!!station}}" class="page">
+  <view class="page-body">
+  	<image src="{{station.img}}" style="width:100%;height:200px" mode="aspectFill"></image>
+  </view>
+  <view class="page-body">
+  	<view class="list-item">
+  		<text class="page-header-title">{{station.name}}</text>
+  	</view>
+  	<navigator url="map?id={{station.id}}">
+	  	<view class="list-item flex-row border-top">
+	  		<text class="text-small flex-auto pr10">{{station.address}}</text>
+	  		<text class="text-small text-light">地址</text>
+	  	</view>
+  	</navigator>
+  	<view class="list-item flex-row border-top" wx:for-items="{{station.contacts}}" wx:key="id">
+  		<text class="text-small flex-auto pr10">{{item}}</text>
+  		<text class="text-small text-light">电话</text>
+  	</view>
+  </view>
 </view>

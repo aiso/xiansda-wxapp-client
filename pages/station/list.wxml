@@ -1,13 +1,13 @@
 <!--list.wxml-->
 <view class="page full-size with-toolbar-footer">
 	<scroll-view scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
-	  <view class="pane p20 flex-column bg-soft border-box">
+	  <view class="page-header">
 	    <text class="page-header-title">设置站点</text>
 	    <text class="page-header-desc text-ls">这里的商品基本都是通过服务站点来交接：购买的商品到服务站点来提货，产品质量问题也直接到服务站点处理，就像在楼下便利店买东西一样。</text>
 	  </view>
 	  <view class="page-body">
 		  <block wx:for-items="{{stations}}" wx:key="id">
-		  	<view class="list-item flex-row border-bottom">
+		  	<view class="list-item flex-row border-top">
 			  <image class="avatar" src="{{item.img}}" />
 			  <view class="stationContent flex-column">
 			  	<navigator url="show?id={{item.id}}">

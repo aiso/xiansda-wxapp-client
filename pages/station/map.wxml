@@ -1,3 +1,3 @@
-<view wx:if="{{!!station}}">
-	<map longitude="{{station.location.lng}}" latitude="{{station.location.lat}}" markers="{{station.markers}}" style="width: 100%; height: 500rpx;"></map>
+<view wx:if="{{!!station}}" class="page full-size">
+	<map longitude="{{station.location.lng}}" latitude="{{station.location.lat}}" markers="{{station.markers}}" style="width: 100%; height: 100%;"></map>
 </view>

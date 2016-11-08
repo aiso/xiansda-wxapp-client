@@ -6,7 +6,14 @@
     "pages/station/station",
     "pages/station/list",
     "pages/station/show",
-    "pages/station/map"
+    "pages/station/map",
+
+    "pages/service/items",
+
+    "pages/work/works",
+
+    "pages/user/user"
+
   ],
   "window":{
     "backgroundColor": "#eeeeee",
@@ -14,5 +21,27 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "鲜时达",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#888",
+    "selectedColor": "#09bb07",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/service/items",
+      "text": "首页",
+      "iconPath": "images/icons/home-outline.png",
+      "selectedIconPath": "images/icons/home-outline_s.png"      
+    }, {
+      "pagePath": "pages/work/works",
+      "text": "工单",
+      "iconPath": "images/icons/layers.png",
+      "selectedIconPath": "images/icons/layers_s.png"          
+    }, {
+      "pagePath": "pages/user/user",
+      "text": "用户",
+      "iconPath": "images/icons/head.png",
+      "selectedIconPath": "images/icons/head_s.png"          
+    }]
   }
 }

@@ -44,6 +44,8 @@ Page({
       })
       if(!app.globalData.auth.profile.station)
         wx.navigateTo({url:'../station/list'})
+      else
+        wx.navigateTo({url:'../service/items'})
       return true
     }).catch(err=>{
       this.setData({

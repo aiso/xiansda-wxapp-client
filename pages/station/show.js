@@ -1,6 +1,6 @@
 'use strict';
 const xsd = require('../../xsd/index')
-const util = require('../../utils/util')
+const string = require('../../utils/string')
 
 Page({
   data: {
@@ -9,15 +9,8 @@ Page({
   onLoad(options){
   	wx.showToast({icon:'loading', title:'载入中...'})
   	xsd.api.get('station/'+options.id).then(data=>{
-  	  const station = data.station
-  	  station.location = util.decodeGeohash(station.geohash)
-  	  station.markers = [{
-	      latitude: station.location.lat,
-	      longitude: station.location.lng,
-	      name: station.name,
-	      desc: station.address
-  	  }]
-  	  console.log(station)
+  	  const station = Object.assign({}, data.station)
+      station.contacts = (new string.StringArray(station.contacts)).array()
   	  this.setData({station})
   	  wx.hideToast()
   	})
