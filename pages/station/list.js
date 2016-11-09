@@ -9,7 +9,8 @@ Page({
     current:0
   },
   onLoad(){
-    const current = getApp().getAuth().profile.station||0
+    const user = xsd.client.auth()
+    const current = user.profile.station||0
   	wx.showToast({icon:'loading', title:'载入中...'})
   	xsd.api.get('stations').then(data=>{
       const stations = data.stations.map(station=>{
@@ -31,9 +32,13 @@ Page({
   	this.setData({stations, setupStationDisabled})
   },
   setupStation(){
+    const user = xsd.client.auth()
     const station = this.data.stations.find(s=>s.icon=='success')
   	xsd.api.post('client/setup/station', {station:station.id}).then(data=>{
-      getApp().globalData.auth.profile.station = station.id
+      const sync = require('../../utils/sync')
+      user.profile.station = data.station.id
+      sync.setEntity('auth', user)
+      sync.setEntity('station', data.station)
       wx.navigateBack()
     })
   }

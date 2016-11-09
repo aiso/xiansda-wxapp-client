@@ -1,23 +1,22 @@
 'use strict';
 
 const xsd = require('../../xsd/index')
+const station = require('../../utils/sync').getter('station')
 
 Page({
   data: {
-  	station:null,
   	items:null
   },
-  onLoad(){
-	wx.showToast({icon:'loading', title:'载入中...'})
-	xsd.client.station().then(data=>{
-		this.setData({station:data.station})
-	}).then(()=>{
+  onShow(){
+  	console.log('onshow')
+  	xsd.client.auth()
+  	station.get().then(()=>{
+  		wx.showToast({icon:'loading', title:'载入中...'})
 		xsd.api.get('client/items', false).then(data=>{
 		  const items = data.items
 		  this.setData({items})
 		  wx.hideToast()
 		})
-	})
-  }
-
+  	})
+  },
 })

@@ -3,6 +3,7 @@
 const base64 = require('../utils/base64')
 const API_PATH = 'http://localhost/xiansda/1/wxapp/'
 //const API_PATH = 'https://xiansda.sinaapp.com/wxapp/'
+const sync = require('../utils/sync')
 
 const _request = opts => {
 	console.log(opts)
@@ -35,7 +36,7 @@ const _request = opts => {
 	  }
 	}, opts)
 
-  	const auth = getApp().getAuth()
+  	const auth = sync.getSync('auth')
   	if(!!auth){
   		options.header = {
   			'Authorization': base64.encode(auth.id + ":" + auth.token)

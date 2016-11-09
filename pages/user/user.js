@@ -1,16 +1,16 @@
 'use strict';
-var xsd = require("../../xsd/index")
-const app = getApp()
+const xsd = require("../../xsd/index")
+const station = require('../../utils/sync').getter('station')
 
 Page({
   data: {
   	user:null,
-  	station:null,
+    station:null
   },
   onShow(){
-  	const user = app.getAuth()
-  	xsd.client.station().then(data=>{
-  		this.setData({user, station:data.station})
+  	const user = xsd.client.auth()
+  	station.get().then(station=>{
+  		this.setData({user, station})
   	})
   }
 })

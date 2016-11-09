@@ -30,25 +30,21 @@ Page({
         userInfo:userInfo
       })
     })*/
-    //this.login()
+    this.login()
   },
   login(){
     app.getUserInfo().then(userInfo=>{
       this.setData({userInfo})
       return {userInfo, accessCode:app.globalData.accessCode}
     }).then(params=>{
-      return app.loginXsd(params.accessCode, params.userInfo)
-    }).then(()=>{
+      //return app.loginXsd(params.accessCode, params.userInfo)
+      return xsd.client.login(params.accessCode, params.userInfo)
+    }).then(auth=>{
       this.setData({
         retry:true,
         welcome:'登录成功'
       })
-      if(!app.globalData.auth.profile.station)
-        wx.navigateTo({url:'../station/list'})
-      else
-        wx.navigateTo({url:'../service/items'})
-      
-      return true
+      wx.navigateTo({url:'../service/items'})
     }).catch(err=>{
       this.setData({
         retry:true,
