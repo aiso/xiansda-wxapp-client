@@ -41,26 +41,29 @@ App({
   },
   loginXsd(accessCode, userinfo){
     const code = 'client-test' // 测试用
-    console.log('11111')
     return xsd.api.post('client/login', {code, userinfo}).then(data=>{
-      console.log('222222')
       this.globalData.auth = data.user
       return data.user
     })
   },
   getAuth(){
-    const user = this.globalData.auth
+    var user = this.globalData.auth
     if(!!user && !!user.last_access && user.expire){
         var timeStr = user.last_access.split(/[\s:-]/),
             loginTime = new Date(timeStr[0], timeStr[1]-1, timeStr[2], timeStr[3], timeStr[4], timeStr[5]),
             currTime = new Date();
         if(currTime.getTime() - loginTime.getTime() > user.expire*1000){
             this.globalData.auth = null
-            return null;
-        }else
-          return user
-    }else
+            user = null;
+        }
+    }
+
+    if(!!user)
+      return user
+    else{
+      wx.navigateTo({url:'/pages/index/index'})
       return null
+    }
   },
   globalData:{
     accessCode:null,

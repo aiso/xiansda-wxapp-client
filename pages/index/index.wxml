@@ -10,6 +10,10 @@
       <view wx:if="{{retry}}" class="p20">
         <button bindtap="login" type="primary">重试</button>  
       </view>
+      <view class="text-center">
+        <button bindtap="setentity">setentity</button>
+        <button bindtap="getentity">getentity</button>
+      </view>
     </view>
   </view>
 </view>

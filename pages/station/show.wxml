@@ -3,8 +3,11 @@
   	<image src="{{station.img}}" style="width:100%;height:200px" mode="aspectFill"></image>
   </view>
   <view class="page-body">
-  	<view class="list-item">
-  		<text class="page-header-title">{{station.name}}</text>
+  	<view class="list-item flex-row">
+  		<text class="text-big flex-auto">{{station.name}}</text>
+      <navigator url="list" redirect="true">
+        <button wx:if="{{current}}" size="mini" type="primary">切换</button>  
+      </navigator>
   	</view>
   	<navigator url="map?id={{station.id}}">
 	  	<view class="list-item flex-row border-top">

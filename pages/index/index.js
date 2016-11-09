@@ -4,12 +4,14 @@
 
 var app = getApp()
 var xsd = require("../../xsd/index")
+var sync = require('../../utils/sync')
+var syncTest = sync.getter('test')
 
 Page({
   data: {
     retry:false,
     welcome: '正在登录鲜时达...',
-    userInfo: {}
+    userInfo: {},
   },
   //事件处理函数
   bindViewTap: function() {
@@ -28,7 +30,7 @@ Page({
         userInfo:userInfo
       })
     })*/
-    this.login()
+    //this.login()
   },
   login(){
     app.getUserInfo().then(userInfo=>{
@@ -52,6 +54,15 @@ Page({
         retry:true,
         welcome:err
       })
+    })
+  },
+  setentity(){
+    sync.setEntity('test', 'aaaaaaaa')
+  },
+  getentity(){
+    sync.trace()
+    syncTest.get().then(data=>{
+      console.log(data)
     })
   },
   testApi:function(){

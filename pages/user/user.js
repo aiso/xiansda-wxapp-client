@@ -7,7 +7,7 @@ Page({
   	user:null,
   	station:null,
   },
-  onLoad(){
+  onShow(){
   	const user = app.getAuth()
   	xsd.client.station().then(data=>{
   		this.setData({user, station:data.station})

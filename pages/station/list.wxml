@@ -10,7 +10,7 @@
 		  	<view class="list-item flex-row border-top">
 			  <image class="avatar" src="{{item.img}}" />
 			  <view class="stationContent flex-column">
-			  	<navigator url="show?id={{item.id}}">
+			  	<navigator url="map?id={{item.id}}">
 			  		<text class="text-title">{{item.name}}</text>
 			  	</navigator>
 				<text class="text-small c-gray">{{item.address}}</text>
