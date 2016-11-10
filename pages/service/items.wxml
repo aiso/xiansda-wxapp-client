@@ -1,4 +1,22 @@
 <!--index.wxml-->
 <view class="page">
-	items
+  <view class="page-body">
+	  <view class="flex-row p20 bg-soft">
+	  	<image src="{{station.img}}" class="avatar small"></image>
+	  	<view class="flex-column plr10">
+	  		<text class="text-h3">{{station.name}}</text>
+	  		<text class="text-h4 c-gray">服务站</text>
+	  	</view>
+	  </view>
+  </view>
+  <view class="list-item flex-row" wx:for="{{items}}" wx:key="id">
+  	<image src="{{item.img}}" class="square"></image>
+  	<view class="flex-column plr20">
+	  <text class="list-item-title">{{item.title}}</text>
+	  <text class="list-item-desc c-gray">aa</text>
+  	</view>
+  	<view>
+  		<text class="text-h2 font-number">{{item.agentAmount.amount}}</text>
+  	</view>
+  </view>
 </view>

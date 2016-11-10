@@ -8,6 +8,8 @@ Page({
     station:null
   },
   onShow(){
+    console.log(this.data.station)
+    
   	const user = xsd.client.auth()
   	station.get().then(station=>{
   		this.setData({user, station})

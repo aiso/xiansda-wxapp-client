@@ -1,11 +1,14 @@
+var EventEmitter = require("events").EventEmitter;
 
 function SyncEntity(name){
 	this.name = name
 }
+SyncEntity.prototype = Object.create(EventEmitter.prototype);
 SyncEntity.prototype.set = function(data, expire){
 	this.data = data
 	this.expire = expire
 	this.timestampe = (new Date()).getTime()
+	this.emit('update', data)
 }
 SyncEntity.prototype.get = function(timestampe){
 	if(!!this.expire && ((new Date()).getTime() - this.timestampe > this.expire*1000)){
@@ -19,15 +22,36 @@ SyncEntity.prototype.get = function(timestampe){
 function SyncGetter(entity){
 	this.entity = entity
 	this.timestampe = 0
+	this.events = []
 }
-SyncGetter.prototype.get = function(){
+SyncGetter.prototype.get = function(opts){
+	console.log(this)
+	opts = Object.assign({force:false}, opts)
+
+	const timestampe = (opts.force===true)?0:this.timestampe
+	const that = this
 	return new Promise((resolve, reject)=>{
-		const data = this.entity.get(this.timestampe)
+		const data = that.entity.get(timestampe)
+		console.log(data)
 		if(!!data){
-			this.timestampe = (new Date()).getTime()
+			that.timestampe = (new Date()).getTime()
 			resolve(data)
 		}
 	})
+}
+SyncGetter.prototype.bind = function(name, cb){
+	this.events[name] = cb
+	this.entity.on(name, cb)
+}
+SyncGetter.prototype.onUpdate = function(cb){
+	this.bind('update', data=>{
+		this.timestampe = (new Date()).getTime()
+		cb(data)
+	})
+}
+SyncGetter.prototype.checkUpdate = function(){
+	const cb = this.events['update']
+	if(!!cb) this.get().then(data=>cb(data))
 }
 
 const entities = []
