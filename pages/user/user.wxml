@@ -12,7 +12,7 @@
 
   <view class="page-body">
   	<navigator url="../station/show?id={{station.id}}">
-	  	<view class="list-item flex-row border-top">
+	  	<view class="p30 flex-row border-top">
 	  		<text class="text-title flex-auto plr10">{{station.name}}</text>
 	  		<text class="text-desc c-light">服务站</text>
 	  	</view>

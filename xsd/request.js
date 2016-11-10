@@ -11,7 +11,7 @@ const _request = opts => {
   	const options = Object.assign({
 	  method:'GET',
 	  success:res=>{
-	  	console.log(res)
+	  	//console.log(res)
 	  	if(res.statusCode==200)
 	  		resolve(res.data)
 	  	else{

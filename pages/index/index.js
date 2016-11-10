@@ -7,6 +7,7 @@ var xsd = require("../../xsd/index")
 var sync = require('../../utils/sync')
 var syncTest = sync.getter('test')
 
+
 Page({
   data: {
     retry:false,

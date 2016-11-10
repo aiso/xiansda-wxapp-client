@@ -10,12 +10,12 @@
       </navigator>
   	</view>
   	<navigator url="map?id={{station.id}}">
-	  	<view class="list-item flex-row border-top">
+	  	<view class="p30 flex-row border-top">
 	  		<text class="text-small flex-auto pr10">{{station.address}}</text>
 	  		<text class="text-small text-light">地址</text>
 	  	</view>
   	</navigator>
-  	<view class="list-item flex-row border-top" wx:for-items="{{station.contacts}}" wx:key="id">
+  	<view class="p30 flex-row border-top" wx:for-items="{{station.contacts}}" wx:key="id">
   		<text class="text-small flex-auto pr10">{{item}}</text>
   		<text class="text-small text-light">电话</text>
   	</view>

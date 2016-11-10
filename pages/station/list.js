@@ -39,6 +39,7 @@ Page({
       user.profile.station = data.station.id
       sync.setEntity('auth', user)
       sync.setEntity('station', data.station)
+      sync.trace()
       wx.navigateBack()
     })
   }

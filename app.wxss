@@ -1,16 +1,5 @@
 /**app.wxss**/
 
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/assets/fonts/Montserrat-Regular.woff') format('woff');
-}
-
-.font-number{
-  font-family: Montserrat
-}
-
 .page{
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -105,6 +94,10 @@
   border-radius: 4rpx;
   cursor: pointer;
 }
+.list-item-thumbnail{
+  width:160rpx;
+  height:120rpx;
+}
 .list-item-title{
   font-size:26rpx;
   text-overflow:ellipsis;white-space:nowrap;overflow:hidden
@@ -149,6 +142,9 @@
   text-align: center;
   margin-left: auto;
   margin-right:auto;
+}
+.text-bold{
+  font-weight: bold;
 }
 .text-ls{
   letter-spacing: 1px;

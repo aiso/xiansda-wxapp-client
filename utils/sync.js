@@ -25,33 +25,40 @@ function SyncGetter(entity){
 	this.events = []
 }
 SyncGetter.prototype.get = function(opts){
-	console.log(this)
 	opts = Object.assign({force:false}, opts)
 
 	const timestampe = (opts.force===true)?0:this.timestampe
 	const that = this
 	return new Promise((resolve, reject)=>{
 		const data = that.entity.get(timestampe)
-		console.log(data)
 		if(!!data){
 			that.timestampe = (new Date()).getTime()
 			resolve(data)
 		}
 	})
 }
+SyncGetter.prototype.reset = function(){
+	this.timestampe = 0
+	return this
+}
 SyncGetter.prototype.bind = function(name, cb){
 	this.events[name] = cb
 	this.entity.on(name, cb)
+	return this
 }
 SyncGetter.prototype.onUpdate = function(cb){
 	this.bind('update', data=>{
 		this.timestampe = (new Date()).getTime()
 		cb(data)
 	})
+	return this
 }
 SyncGetter.prototype.checkUpdate = function(){
 	const cb = this.events['update']
-	if(!!cb) this.get().then(data=>cb(data))
+	if(!!cb) 
+		this.get().then(data=>cb(data))
+
+	return this
 }
 
 const entities = []
@@ -64,7 +71,9 @@ const setEntity = (name, data, expire=null) => {
 		entity = new SyncEntity(name)
 		entities.push(entity)
 	}
-	entity.set(data, expire)
+
+	if(!!data)
+		entity.set(data, expire)
 	return entity
 }
 const getter = name => {

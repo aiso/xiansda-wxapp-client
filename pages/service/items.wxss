@@ -1,3 +1,4 @@
 .list-item-title{
-	width:440rpx;
+	width:480rpx;
+	margin-bottom: 6rpx;
 }
