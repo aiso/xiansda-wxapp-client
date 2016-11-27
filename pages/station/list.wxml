@@ -1,27 +1,24 @@
 <!--list.wxml-->
-<view class="page full-size with-toolbar-footer">
+<view class="page with-toolbar-footer">
 	<scroll-view scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
-	  <view class="page-header">
-	    <text class="page-header-title">设置站点</text>
-	    <text class="page-header-desc text-ls">这里的商品基本都是通过服务站点来交接：购买的商品到服务站点来提货，产品质量问题也直接到服务站点处理，就像在楼下便利店买东西一样。</text>
+	  <view class="pane-tip border-bottom bg-soft text-h4">
+	  	服务站列表
 	  </view>
-	  <view class="page-body">
-		  <block wx:for-items="{{stations}}" wx:key="id">
-		  	<view class="list-item flex-row border-top">
-			  <image class="avatar" src="{{item.img}}" />
-			  <view class="stationContent flex-column">
-			  	<navigator url="map?id={{item.id}}">
-			  		<text class="text-title">{{item.name}}</text>
-			  	</navigator>
-				<text class="text-small c-gray">{{item.address}}</text>
-			  </view>
+	  <block wx:for-items="{{stations}}" wx:key="id">
+	  	<view class="list-item flex-row border-bottom">
+		  <image class="avatar small" src="{{item.img}}" />
+		  <view class="stationContent flex-column">
+		  	<navigator url="map?id={{item.id}}">
+		  		<text class="text-title">{{item.name}}</text>
+		  	</navigator>
+			<text class="text-small c-gray">{{item.address}}</text>
+		  </view>
 
-			  <view>
-			  	<icon type="{{item.icon}}" size="32" bindtap="switchChange" data-idx="{{index}}"/>
-			  </view>
-		  	</view>
-		  </block>
-	  </view>
+		  <view class="pr20">
+		  	<icon type="{{item.icon}}" size="32" bindtap="switchChange" data-idx="{{index}}"/>
+		  </view>
+	  	</view>
+	  </block>
 	</scroll-view>
 	<view class="toolbar-footer">
 		<button bindtap="setupStation" class="button text-ls" disabled="{{setupStationDisabled}}">确定</button> 

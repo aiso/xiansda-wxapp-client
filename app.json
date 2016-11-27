@@ -12,7 +12,9 @@
 
     "pages/work/works",
 
-    "pages/user/user"
+    "pages/user/login",
+    "pages/user/index",
+    "pages/user/stations"
 
   ],
   "window":{
@@ -28,7 +30,7 @@
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [{
-      "pagePath": "pages/service/items",
+      "pagePath": "pages/index/index",
       "text": "首页",
       "iconPath": "images/icons/home-outline.png",
       "selectedIconPath": "images/icons/home-outline_s.png"      
@@ -38,7 +40,7 @@
       "iconPath": "images/icons/layers.png",
       "selectedIconPath": "images/icons/layers_s.png"          
     }, {
-      "pagePath": "pages/user/user",
+      "pagePath": "pages/user/index",
       "text": "用户",
       "iconPath": "images/icons/head.png",
       "selectedIconPath": "images/icons/head_s.png"          

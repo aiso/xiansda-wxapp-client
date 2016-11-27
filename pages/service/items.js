@@ -2,7 +2,6 @@
 
 const xsd = require('../../xsd/index')
 const sync = require('../../utils/sync')
-const station = sync.getter('station')
 
 const makeupItems = items => {
   return items.map(item=>{
@@ -17,9 +16,7 @@ Page({
   	items:null
   },
   onShow(){
-
-    if(!this.data.station) station.reset()
-
+/*
     station.get().then(station=>{
       this.setData({station})
 
@@ -30,6 +27,6 @@ Page({
         wx.hideToast()
       })
     })
-
+*/
   }
 })

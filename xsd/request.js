@@ -1,19 +1,24 @@
 'use strict';
 
+const Promise = require("../utils/bluebird.min")
 const base64 = require('../utils/base64')
+
 const API_PATH = 'http://localhost/xiansda/1/wxapp/'
 //const API_PATH = 'https://xiansda.sinaapp.com/wxapp/'
 const sync = require('../utils/sync')
 
 const _request = opts => {
-	console.log(opts)
   return new Promise((resolve, reject) => {
+
   	const options = Object.assign({
 	  method:'GET',
 	  success:res=>{
 	  	//console.log(res)
 	  	if(res.statusCode==200)
 	  		resolve(res.data)
+	  	else if(res.statusCode==401){
+	  		wx.navigateTo({url:'/pages/user/login'})
+	  	}
 	  	else{
 	  		const msg = (!!res.data.error)?res.data.error.message:res.data
 		    wx.showModal({
@@ -36,19 +41,20 @@ const _request = opts => {
 	  }
 	}, opts)
 
-  	const auth = sync.getSync('auth')
+  	const auth = sync.getEntityData('auth')
   	if(!!auth){
   		options.header = {
   			'Authorization': base64.encode(auth.id + ":" + auth.token)
   		}
   	}
 	options.url = API_PATH + options.url
+	console.log(options)
 	wx.request(options)
   })	
 }
 
 const _cache = []
-const get = (url, cache=true) => {
+const get = (url, cache=false) => {
 	if(!!_cache[url] && _cache[url].dirty !== true)
 		return Promise.resolve(_cache[url])
 	else
@@ -61,10 +67,14 @@ const get = (url, cache=true) => {
 const dirty = url => {
 	if(!!_cache[url]) _cache[url].dirty = true
 }
-const post = (url, data) => _request({url, method:'POST', data})
+const isDirty = url => {
+	return (!!_cache[url])&&_cache[url].dirty===true
+}
 
 module.exports = {
   get,
   dirty,
-  post
+  isDirty,
+  post: (url, data) => _request({url, method:'POST', data}),
+  delete: url => _request({url, method:'DELETE'})
 }

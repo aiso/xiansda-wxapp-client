@@ -1,0 +1,26 @@
+<view class="page">
+  <scroll-view scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
+	  <view class="pane-hero flex-column border-bottom">
+	  	<text class="text-h1 mb10">关于服务站</text>
+	    <text class="text-h3 c-gray">您必须先先添加您的服务站列表，因为在这里所有的商品都是通过服务站来交接，如果商品有任何的售后问题也是直接找服务站来处理。</text>
+	  </view>
+  	<view class="pane flex-row border-bottom" wx:for-items="{{stations}}" wx:key="id">
+	  <image class="avatar small" src="{{item.img}}" />
+	  <navigator class="plr20 flex-auto" url="../station/map?id={{item.id}}">
+	  	<view class="flex-column">
+			<text class="text-title">{{item.name}}</text>
+			<text class="text-small c-gray">{{item.address}}</text>
+	  	</view>
+	  </navigator>
+	  <view class="pr20">
+	  	<switch data-station="{{item.id}}" checked="{{item.checked}}" bindchange="switchStation"/>
+	  </view>
+  	</view>
+  </scroll-view>
+	<view class="toolbar-footer">
+		<button bindtap="setupStations" class="button text-ls">确定</button> 
+	</view>
+
+
+</view>
+

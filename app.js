@@ -1,5 +1,5 @@
 //app.js
-const xsd = require('xsd/index')
+var Promise = require("./utils/bluebird.min")
 
 App({
   onLaunch: function () {
@@ -23,6 +23,7 @@ App({
     })
   },
   getUserInfo(){
+    //console.log(this.globalData)
     if(!!this.globalData.userInfo) 
       return Promise.resolve(this.globalData.userInfo)
 
@@ -39,35 +40,9 @@ App({
       })
     })
   },
-  loginXsd(accessCode, userinfo){
-    const code = 'client-test' // 测试用
-    return xsd.api.post('client/login', {code, userinfo}).then(data=>{
-      this.globalData.auth = data.user
-      return data.user
-    })
-  },
-  getAuth(){
-    var user = this.globalData.auth
-    if(!!user && !!user.last_access && user.expire){
-        var timeStr = user.last_access.split(/[\s:-]/),
-            loginTime = new Date(timeStr[0], timeStr[1]-1, timeStr[2], timeStr[3], timeStr[4], timeStr[5]),
-            currTime = new Date();
-        if(currTime.getTime() - loginTime.getTime() > user.expire*1000){
-            this.globalData.auth = null
-            user = null;
-        }
-    }
-
-    if(!!user)
-      return user
-    else{
-      wx.navigateTo({url:'/pages/index/index'})
-      return null
-    }
-  },
   globalData:{
-    accessCode:null,
-    userInfo:null,
-    auth:null
+    env:'dev',
+    debugUser:'client-test1',
+    userInfo:null
   }
 })
