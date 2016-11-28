@@ -1,25 +1,20 @@
-.field-img{
-	width:100rpx;
-	box-sizing: border-box;
-}
-
 .field-station{
-	width:200rpx;
-	text-align: center;
+	flex:auto;
 	box-sizing: border-box;
 }
 
 .field-fee{
-	width:140rpx;
+	text-align: center;
+	width:120rpx;
 	box-sizing: border-box;
 }
 
 .field-amount{
-	width:140rpx;
+	text-align: center;
+	width:160rpx;
 	box-sizing: border-box;
 }
 
 .field-order{
-	flex:auto;
-	box-sizing: border-box;
+	width:140rpx;
 }

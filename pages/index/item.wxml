@@ -18,20 +18,22 @@
 			</view>
 		</view>
 	</view>
-	<view class="bg-soft flex-row c-gray">
-		<view class="field-img"></view>
-		<text class="text-h4 field-station p10">服务站</text>
-		<text class="text-h4 field-fee p10">代理费</text>
-		<text class="text-h4 field-amount p10">价格</text>
-		<text class="text-h4 field-order p10">下单</text>
+	<view class="bg-soft flex-row c-gray p10 border-bottom">
+		<text class="text-h4 field-station pl20">服务站</text>
+		<text class="text-h4 field-fee">代理费</text>
+		<text class="text-h4 field-amount">价格</text>
+		<view class="field-order"></view>
 	</view>
-	<view class="bg-white border-top flex-row" wx:for="{{prod.agents}}" wx:key="id">
-		<view class="field-img p10">
-			<image class="avatar small text-center" src="{{item.station.img}}"></image>
+	<view class="bg-white border-bottom flex-row p20" wx:for="{{prod.agents}}" wx:key="id">
+		<view class="field-station flex-row">
+			<image class="avatar tiny text-center" src="{{item.station.img}}"></image>
+			<text class="text-h4 single-line field-station ib p10" style="width:200rpx">{{item.station.name}}</text>
 		</view>
-		<text class="text-h4 c-gray single-line field-station ib p10" style="width:160rpx">{{item.station.name}}</text>
-		<text class="text-h4 field-fee p10">{{item.fee}}</text>
-		<text class="text-h4 field-amount p10">价格</text>
-		<text class="text-h4 field-order p10">下单</text>
+		<text class="text-h4 text-bold c-gray field-fee">￥{{item.fee}}</text>
+		<text class="text-h4 text-bold c-red field-amount">￥{{100.36}}</text>
+		<button class="field-order" size="mini" type="primary">下单</button>
+	</view>
+	<view class="pane">
+		<text class="text-h3 c-gray">{{prod.content}}</text>
 	</view>
 </view>

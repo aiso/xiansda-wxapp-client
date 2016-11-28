@@ -382,6 +382,11 @@
   width: 80rpx;
   height: 80rpx;
 }
+.avatar.tiny{
+  background-size:60rpx 60rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
 .avatar.big{
   background-size:160rpx 160rpx;
   width: 160rpx;
