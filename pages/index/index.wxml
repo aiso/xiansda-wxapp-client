@@ -1,4 +1,18 @@
 <!--index.wxml-->
 <view class="page">
-index
+  <navigator url="item?id={{item.id}}" wx:for="{{prods}}" wx:key="id">
+  	<view class="list-item border-top">
+  	  <image class="list-item-thumbnail" src="{{item.img}}" mode="aspectFill"></image>
+  	  <view class="list-item-content flex-column">
+  	  	<text class="text-h3 single-line">{{item.title}}</text>
+  	  	<view>
+  	  		<text class="text-h4 c-gray">{{item.supplier}}</text>
+  	  	</view>
+  	  </view>
+      <view class="flex-column text-center">
+        <text class="text-h3 text-bold c-red mb5">￥{{item.price}}</text>
+        <text class="text-h5 c-light">售价</text>
+      </view>
+  	</view>
+  </navigator>
 </view>

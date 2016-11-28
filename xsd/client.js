@@ -3,10 +3,9 @@
 const api = require('request.js')
 const sync = require('../utils/sync')
 
-const login = (user) => {
-	sync.setEntity('auth', user)
-	const stations = (!!user.profile.stations)?user.profile.stations.split(','):[]
-	//sync.setEntity('stations', stations)
+const login = (data) => {
+	sync.setEntity('auth', data.user)
+	sync.setEntity('stations', data.init.stations)
 	setTimeout(function() {
 	  wx.navigateBack()
 	}, 500);

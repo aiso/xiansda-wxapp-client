@@ -35,7 +35,7 @@ Page({
           this.setData({
             welcome:'登录成功...'
           })
-          xsd.client.login(data.user)
+          xsd.client.login(data)
         }else{
           this.setData({
             access:true,
