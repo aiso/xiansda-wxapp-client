@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/index/item",
+    "pages/index/order",
     "pages/logs/logs",
 
     "pages/station/station",

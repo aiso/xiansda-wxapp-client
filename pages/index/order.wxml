@@ -1,0 +1,16 @@
+<view class="page">
+	<view class="pane">
+		<view class="input-field">
+			<text class="label">姓名</text>
+			<input class="input" placeholder="连续的两个1会变成2" />
+			<icon type="info_circle" size="20"/>
+		</view>
+		<view class="border"></view>
+		<view class="input-field">
+			<text class="label">证件类型</text>
+			<input class="input" placeholder="连续的两个1会变成2" />
+			<icon type="warn" size="20"/>
+		</view>
+	</view>
+
+</view>

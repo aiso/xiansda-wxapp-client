@@ -26,12 +26,17 @@
 	</view>
 	<view class="bg-white border-bottom flex-row p20" wx:for="{{prod.agents}}" wx:key="id">
 		<view class="field-station flex-row">
-			<image class="avatar tiny text-center" src="{{item.station.img}}"></image>
-			<text class="text-h4 single-line field-station ib p10" style="width:200rpx">{{item.station.name}}</text>
+			<navigator url="../station/map?id={{item.station.id}}">
+				<image class="avatar tiny text-center" src="{{item.station.img}}"></image>
+				<text class="text-h4 single-line field-station ib p10" style="width:200rpx">{{item.station.name}}</text>
+			</navigator>
 		</view>
+
 		<text class="text-h4 text-bold c-gray field-fee">￥{{item.fee}}</text>
-		<text class="text-h4 text-bold c-red field-amount">￥{{100.36}}</text>
-		<button class="field-order" size="mini" type="primary">下单</button>
+		<text class="text-h4 text-bold c-red field-amount">￥{{item.amount}}</text>
+		<navigator url="order?agent={{item.id}}">
+			<button class="field-order" size="mini" type="primary">下单</button>
+		</navigator>
 	</view>
 	<view class="pane">
 		<text class="text-h3 c-gray">{{prod.content}}</text>

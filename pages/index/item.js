@@ -16,6 +16,7 @@ Page({
 	  		const prod = data.item
 	  		prod.agents = data.agents.map(agent=>{
 	  			agent.station = stations.find(s=>s.id==agent.station)
+          agent.amount = parseFloat(prod.price)+parseFloat(agent.fee)
 	  			return agent
 	  		})
 	  		this.setData({prod})
