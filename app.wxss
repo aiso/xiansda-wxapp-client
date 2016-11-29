@@ -213,6 +213,20 @@
   font-size:32rpx;
 }
 
+.text-field{
+  display: flex;
+  flex-direction:row;
+  align-items:center;
+}
+.text-field .label{
+  width:180rpx;
+  color:#b2b2b2;
+}
+.text-field .text{
+  flex:auto;
+  text-align: right;
+}
+
 
 .p10{
   padding:10rpx;

@@ -5,6 +5,8 @@
     "pages/index/order",
     "pages/logs/logs",
 
+    "pages/cart/index",
+
     "pages/station/station",
     "pages/station/list",
     "pages/station/show",
@@ -36,12 +38,20 @@
       "text": "首页",
       "iconPath": "images/icons/home-outline.png",
       "selectedIconPath": "images/icons/home-outline_s.png"      
-    }, {
+    }, 
+    {
+      "pagePath": "pages/cart/index",
+      "text": "购物篮",
+      "iconPath": "images/icons/shopping-cart.png",
+      "selectedIconPath": "images/icons/shopping-cart_s.png"          
+    }, 
+    {
       "pagePath": "pages/work/works",
-      "text": "工单",
+      "text": "服务单",
       "iconPath": "images/icons/layers.png",
       "selectedIconPath": "images/icons/layers_s.png"          
-    }, {
+    }, 
+    {
       "pagePath": "pages/user/index",
       "text": "用户",
       "iconPath": "images/icons/head.png",
