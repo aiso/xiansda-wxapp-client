@@ -16,7 +16,12 @@ Page({
 	  		agent.station = stations.find(s=>s.id==data.agent.station)
 	  		const prod = data.item
 	  		prod.amount = parseFloat(prod.price)+parseFloat(agent.fee)
-	  		this.setData({prod, agent})
+
+        const cart = xsd.cart.get(agent)
+        if(!!cart)
+          this.setData({prod, agent, quantity:cart.quantity})
+        else
+	  		 this.setData({prod, agent})
 	  		this.caculate()
 	  	})
   	})
@@ -45,6 +50,8 @@ Page({
   	this.caculate()
   },
   postOrder(){
-
+    xsd.cart.set(this.data.agent, this.data.quantity)
+    wx.showToast({title:'购物篮已更新', icon:'success'})
+    wx.navigateBack()
   }
 })

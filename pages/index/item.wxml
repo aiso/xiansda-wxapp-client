@@ -28,14 +28,14 @@
 		<view class="field-station flex-row">
 			<navigator url="../station/map?id={{item.station.id}}">
 				<image class="avatar tiny text-center" src="{{item.station.img}}"></image>
-				<text class="text-h4 single-line field-station ib p10" style="width:200rpx">{{item.station.name}}</text>
+				<text class="text-h4 single-line field-station ib p10" style="width:280rpx">{{item.station.name}}</text>
 			</navigator>
 		</view>
 
 		<text class="text-h4 text-bold c-gray field-fee">￥{{item.fee}}</text>
 		<text class="text-h4 text-bold c-red field-amount">￥{{item.amount}}</text>
-		<navigator url="order?agent={{item.id}}">
-			<button class="field-order" size="mini" type="primary">下单</button>
+		<navigator url="../cart/order?agent={{item.id}}" class="field-order">
+			<image class="btn btn-icon" src="/images/icons/shopping-cart_s.png"></image>
 		</navigator>
 	</view>
 	<view class="pane">

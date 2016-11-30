@@ -2,10 +2,10 @@
   "pages":[
     "pages/index/index",
     "pages/index/item",
-    "pages/index/order",
     "pages/logs/logs",
 
     "pages/cart/index",
+    "pages/cart/order",
 
     "pages/station/station",
     "pages/station/list",

@@ -16,5 +16,6 @@
 }
 
 .field-order{
-	width:140rpx;
+	width:80rpx;
+	text-align: center;
 }

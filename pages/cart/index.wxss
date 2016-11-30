@@ -1,0 +1,12 @@
+.cart-item{
+	padding:30rpx;
+}
+.cart-item-thumbnail{
+  background-color: #eee;
+  width:120rpx;
+  height:90rpx;
+}
+.cart-item-content{
+  padding-left:30rpx;
+	width:400rpx;
+}
