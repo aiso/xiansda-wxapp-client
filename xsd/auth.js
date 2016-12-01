@@ -1,7 +1,19 @@
 'use strict';
 
+const Promise = require("../utils/bluebird.min")
 const api = require('request.js')
+const sync = require('../utils/sync')
+
 const AUTH_KEY = 'XSD_AUTH_KEY'
+
+const load = () => {
+	try {
+	    user = wx.getStorageSync(AUTH_KEY)
+
+	} catch (e) {   
+		console.log(e)
+	}
+}
 
 const login = () => {
 	wx.showNavigationBarLoading()
@@ -11,16 +23,18 @@ const login = () => {
       const postData = {code: app.globalData.accessCode, userInfo}
       !!getApp().globalData.debugUser && (postData.code = getApp().globalData.debugUser) //是否调试用户
       return api.post('client/login', postData).then(data=>{
-        if(!!data.user){
-			try {
-			    wx.setStorageSync(AUTH_KEY, data.user)
-			} catch (e) {   
-				 console.log(e)
-			}
-        }else{
-        	wx.showModal({title:'登录失败！', content:'无效用户'})
-        }
-
+      	return new Promise((resolve, reject)=>{
+	        if(!!data.user){
+				try {
+				    wx.setStorageSync(AUTH_KEY, data.user)
+				    resolve(data.user)
+				} catch (e) {   
+					reject(e)
+				}
+	        }else{
+	        	reject('无效用户')
+	        }
+      	})
       })
 
     }).catch(err=>{
@@ -32,12 +46,18 @@ const login = () => {
 
 	sync.setEntity('auth', data.user)
 	sync.setEntity('stations', data.init.stations)
-	setTimeout(function() {
-	  wx.navigateBack()
-	}, 500);
+
 }
 
 const get = () => {
+	return new Promise((resolve, reject)=>{
+		wx.getStorage({key:AUTH_KEY, success:(res)=>{
+
+
+		}})
+	})
+
+
 	const auth = sync.getEntityData('auth')
 	if(!!auth){
 	    var timeStr = auth.last_access.split(/[\s:-]/),

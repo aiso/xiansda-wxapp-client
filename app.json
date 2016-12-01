@@ -18,7 +18,9 @@
 
     "pages/user/login",
     "pages/user/index",
-    "pages/user/stations"
+    "pages/user/stations",
+
+    "pages/demo/index"
 
   ],
   "window":{
