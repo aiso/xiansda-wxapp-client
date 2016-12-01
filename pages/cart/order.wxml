@@ -13,7 +13,7 @@
 		<view class="border"></view>
 		<view class="text-field">
 			<text class="label">价格</text>
-			<text class="text">￥{{prod.amount}}</text>
+			<text class="text">{{prod.price}} + {{agent.fee}} = ￥{{prod.amount}}</text>
 		</view>
 		<view class="border"></view>
 		<view class="text-field">
