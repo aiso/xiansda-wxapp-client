@@ -88,6 +88,20 @@ Page({
   	})
   },
   checkout(){
+    const postItems = this.data.items.filter(i=>i.selected==true).map(item=>{
+      return {
+        agent:item.id,
+        station:item.station.id,
+        item:item.item.id,
+        price:item.item.price,
+        fee:item.fee,
+        strategy:item.strategy,
+        quantity:item.quantity
+      }
+    })
+    xsd.api.post("client/cart", {items:postItems}).then(data=>{
+      console.log(data);
+    })
 
   }
 })

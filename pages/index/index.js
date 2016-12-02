@@ -10,20 +10,18 @@ Page({
   data: {
     prods:[]
   },
-  onLoad: function () {
-    console.log('index load')
-    xsd.client.auth()
-  },
   onShow(){
-    console.log('index show')
-    stationsGetter.get().then(stations=>{
-      xsd.api.get('client/items').then(data=>{
-        const prods = data.items.map(item=>{
-          item.supplier = data.suppliers.find(s=>s.id==item.user).name
-          return item
-        })
-        this.setData({prods})
-      })
+    !!xsd.auth.check() && stationsGetter.get().then(stations=>{
+      this.loadItems()
     })
-  },  
+  }, 
+  loadItems(){
+    xsd.api.get('client/items').then(data=>{
+      const prods = data.items.map(item=>{
+        item.supplier = data.suppliers.find(s=>s.id==item.user).name
+        return item
+      })
+      this.setData({prods})
+    })
+  } 
 })

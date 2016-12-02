@@ -7,7 +7,6 @@ Page({
   	userStations:[]
   },
   onLoad(){
-    const user = xsd.client.auth()
     wx.showToast({icon:'loading', title:'载入中...'})
     xsd.sync.stations.get().then(stations=>{
       const userStations = stations.map(s=>s.id)

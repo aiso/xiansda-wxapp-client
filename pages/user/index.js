@@ -8,9 +8,7 @@ Page({
   	stations:[]
   },
   onLoad(){
-  	const user = xsd.client.auth()
-  	const userInfo = getApp().globalData.userInfo
-  	this.setData({userInfo})
+  	this.setData({userInfo:getApp().globalData.user.wxinfo})
   },
   onShow(){
     sgStations.get().then(stations=>{

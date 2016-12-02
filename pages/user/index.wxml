@@ -14,6 +14,12 @@
       <text wx:if="{{stations.length>0}}">{{stations.length}}</text>
     </view>
   </navigator>  
+  <navigator url="login">
+    <view class="list-item flex-row pr30 border-bottom">
+      <image class="btn-icon" src="/images/icons/reload.png"></image>
+      <text class="flex-auto plr30">重新登录</text>
+    </view> 
+  </navigator>
   <view class="pane border-bottom">
     <navigator url="/pages/agent/item?id=100001">strategy</navigator>  
   </view>

@@ -13,7 +13,6 @@ Page({
     userInfo: {},
   },
   onShow: function () {
-    console.log('onLoad')
     this.login()
   },
   login(){
@@ -26,16 +25,20 @@ Page({
 
     app.getUserInfo().then(userInfo=>{
       this.setData({userInfo})
-      return {userInfo, accessCode:app.globalData.accessCode}
-    }).then(params=>{
-      const postData = {code: params.accessCode, userInfo:params.userInfo}
-      !!getApp().globalData.debugUser && (postData.code = getApp().globalData.debugUser) //是否调试用户
+      const postData = {code: app.globalData.accessCode, userInfo}
+      !!app.globalData.debugUser && (postData.code = app.globalData.debugUser) //是否调试用户
       return xsd.api.post('client/login', postData).then(data=>{
         if(!!data.user){
           this.setData({
             welcome:'登录成功...'
           })
-          xsd.client.login(data)
+          data.user.wxinfo = userInfo
+          xsd.auth.store(data.user).then(()=>{
+            wx.showToast({title:'登录成功', icon:'success'})
+            setTimeout(function() {
+              wx.navigateBack()
+            }, 500)
+          })
         }else{
           this.setData({
             access:true,
@@ -43,7 +46,6 @@ Page({
             welcome:'无效用户'
           })
         }
-
       })
 
     }).catch(err=>{
@@ -57,5 +59,5 @@ Page({
   },
   back(){
     wx.navigateBack()
-  }  
+  }
 })
