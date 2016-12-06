@@ -5,13 +5,13 @@
   	  <image class="list-item-thumbnail" src="{{item.img}}" mode="aspectFill"></image>
   	  <view class="list-item-content flex-column">
   	  	<text class="text-h3 single-line">{{item.title}}</text>
-  	  	<view>
+  	  	<view class="flex-row">
   	  		<text class="text-h4 c-gray">{{item.supplier}}</text>
+          <text class="text-h3 text-bold c-red mb5">￥{{item.price}}</text>
   	  	</view>
   	  </view>
       <view class="flex-column text-center">
-        <text class="text-h3 text-bold c-red mb5">￥{{item.price}}</text>
-        <text class="text-h5 c-light">售价</text>
+        <text class="text-h5 c-light">{{item.service.title}}</text>
       </view>
   	</view>
   </navigator>

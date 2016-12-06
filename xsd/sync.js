@@ -12,6 +12,13 @@ const stations = sync.initEntity('stations', ()=>{
 
 //const stations = sync.setEntity('stations')
 
+const base = sync.initEntity('base', ()=>{
+    return api.get('client/base').then(data=>{
+      return data.base
+    })
+})
+
 module.exports = {
-	stations
+	stations,
+	base
 }
