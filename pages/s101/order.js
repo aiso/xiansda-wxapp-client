@@ -3,10 +3,13 @@ const xsd = require('../../xsd/index')
 
 Page({
   data:{
+    disabled:true,
   	stations:[],
   	prod:null,
   	agents:[],
-  	agent:null
+  	agent:null,
+    quantity:1,
+    amount:0.00,    
   },
   onLoad(options){
   	wx.showNavigationBarLoading()
@@ -20,10 +23,12 @@ Page({
 	  		const item = this.data.prod
 	  		const agents = data.agents.map(agent=>{
 	  			agent.station = stations.find(s=>s.id==agent.station)
-          		agent.amount = parseFloat(item.price)+parseFloat(agent.fee)
+          agent.amount = parseFloat(item.price)+parseFloat(agent.fee)
 	  			return agent
 	  		})
-	  		this.setData({agents})
+        const agent = (agents.length == 1)?agents[0]:null
+	  		this.setData({agents, agent})
+        this.caculate()
 	  	})
   	}).finally(()=>{
   		wx.hideNavigationBarLoading()
@@ -32,7 +37,35 @@ Page({
   switchAgent(e){
   	if(!!this.data.agent && this.data.agent.id == this.data.agents[e.currentTarget.dataset.idx].id)
   		return;
-  	else
+  	else{
   		this.setData({agent:this.data.agents[e.currentTarget.dataset.idx]})
-  }
+      this.caculate()
+    }
+  },
+  caculate(){
+    if(!!this.data.agent){
+      const amount = (this.data.agent.amount*this.data.quantity).toFixed(2)
+      this.setData({amount})
+    }
+  },
+  increate(){
+    this.setData({quantity:this.data.quantity+1})
+    this.caculate()
+  },
+  decreate(){
+    if(this.data.quantity>1){
+      this.setData({quantity:this.data.quantity-1})
+      this.caculate()
+    }
+  },
+  quantityChange(e){
+    const quantity = xsd.sd.regex.quantity.test(e.detail.value)?e.detail.value:''
+    this.setData({quantity})
+    this.caculate()
+  },
+  postOrder(){
+    xsd.cart.set(this.data.agent, this.data.quantity)
+    wx.showToast({title:'购物篮已更新', icon:'success'})
+    wx.navigateBack()
+  }  
 })

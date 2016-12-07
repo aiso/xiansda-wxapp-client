@@ -13,7 +13,7 @@
 
 .agent-fee{
 	width:140rpx;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
