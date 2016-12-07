@@ -11,18 +11,8 @@ Page({
   	prod:null,
   },
   onLoad(options){
-  	xsd.sync.stations.get().then(stations=>{
-	  	xsd.api.get('client/item/'+options.id).then(data=>{
-	  		const prod = data.item
-	  		prod.agents = data.agents.map(agent=>{
-	  			agent.station = stations.find(s=>s.id==agent.station)
-          agent.amount = parseFloat(prod.price)+parseFloat(agent.fee)
-	  			return agent
-	  		})
-	  		this.setData({prod})
-	  	})
-  	})
-
-
+    xsd.api.get('item/'+options.id, true).then(data=>{
+      this.setData({prod:data.item})
+    })
   },
 })

@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page toolbar">
 	<swiper indicator-dots="{{indicatorDots}}"
 	  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
 	  <block wx:for="{{prod.images}}" wx:key="id">
@@ -7,38 +7,26 @@
 	    </swiper-item>
 	  </block>
 	</swiper>
-	<view class="pane border-top">
-		<view class="flex-row">
-			<view class="flex-auto pr20">
-				<text class="mb10">{{prod.title}}</text>
-			</view>
-			<view class="text-center flex-column">
-				<text class="text-bold c-red">￥{{prod.price}}</text>
-				<text class="text-h4 c-gray single-line" style="width:160rpx">{{prod.supplier.name}}</text>
-			</view>
+	<view class="pane flex-column">
+		<text class="mb10 text-h2">{{prod.title}}</text>
+		<view class="flex-row c-gray">
+			<text class="text-h4">供应商：</text>
+			<text class="text-h4 flex-auto">{{prod.supplier.name}}</text>
 		</view>
-	</view>
-	<view class="bg-soft flex-row c-gray p10 border-bottom">
-		<text class="text-h4 field-station pl20">服务站</text>
-		<text class="text-h4 field-fee">代理费</text>
-		<text class="text-h4 field-amount">价格</text>
-		<view class="field-order"></view>
-	</view>
-	<view class="bg-white border-bottom flex-row p20" wx:for="{{prod.agents}}" wx:key="id">
-		<view class="field-station flex-row">
-			<navigator url="../station/map?id={{item.station.id}}">
-				<image class="avatar tiny text-center" src="{{item.station.img}}"></image>
-				<text class="text-h4 single-line field-station ib p10" style="width:280rpx">{{item.station.name}}</text>
-			</navigator>
-		</view>
-
-		<text class="text-h4 text-bold c-gray field-fee">￥{{item.fee}}</text>
-		<text class="text-h4 text-bold c-red field-amount">￥{{item.amount}}</text>
-		<navigator url="../cart/order?agent={{item.id}}" class="field-order">
-			<image class="btn btn-icon" src="/images/icons/shopping-cart_s.png"></image>
-		</navigator>
-	</view>
-	<view class="pane">
+		<view class="border dashed"></view>
 		<text class="text-h3 c-gray">{{prod.content}}</text>
 	</view>
+
+	<view class="toolbar-footer border-top p20 flex-row">
+		<view>
+			<text class="text-h4 c-gray">售价：</text>
+		</view>
+		<view class="flex-auto">
+			<text class="text-bold c-red">￥{{prod.price}}</text>
+		</view>
+		<navigator url="../s{{prod.service}}/order?id={{prod.id}}">
+			<button size="mini" type="primary" >下单</button>
+		</navigator>
+	</view>
+
 </view>

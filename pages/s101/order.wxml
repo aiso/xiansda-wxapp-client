@@ -1,0 +1,46 @@
+<view class="page toolbar">
+	<view class="p10 bg-soft">
+		<text class="text-h5 plr10 c-light">单价</text>
+	</view>
+	<view class="pane text-center">
+		<text class="text-h1 c-gray">￥{{prod.price}}</text>
+	</view>
+	<view class="p10 bg-soft">
+		<text class="text-h5 plr10 c-light">数量</text>
+	</view>
+	<view class="border-bottom flex-row p10">
+		<view class="p20 btn">
+			<image class="btn-icon" src="/images/icons/minus.png"></image>
+		</view>
+		<text class="flex-auto text-center">3</text>
+		<view class="p20 btn">
+			<image class="btn-icon" src="/images/icons/plus.png"></image>
+		</view>
+	</view>
+	<view class="p10 bg-soft">
+		<text class="text-h5 plr10 c-light">代理点</text>
+	</view>
+	<view class="bg-white border-bottom flex-row p30" wx:for="{{agents}}" wx:key="id">
+		<image class="avatar tiny" src="{{item.station.img}}"></image>
+		<navigator class="agent-station plr20" url="../station/map?id={{item.id}}">
+			<text class="text-h4 single-line">{{item.station.name}}</text>
+		</navigator>
+		<text class="agent-fee-label">代理费：</text>
+		<text class="agent-fee c-red">￥{{item.fee}}</text>
+		<view class="agent-select" bindtap="switchAgent" data-idx="{{index}}">
+			<image wx:if="{{!!agent && agent.id==item.id}}" class="btn-icon" src="/images/icons/checkbox-checked.png"></image>
+			<image wx:if="{{!agent || agent.id!=item.id}}"class="btn-icon" src="/images/icons/checkbox-unchecked.png"></image>
+		</view>
+	</view>
+
+	<view class="toolbar-footer border-top p20 flex-row">
+		<view>
+			<text class="text-h4 c-gray">金额：</text>
+		</view>
+		<view class="flex-auto">
+			<text class="text-bold c-red">￥{{amount}}</text>
+		</view>
+		<button size="mini" type="primary" bindtap="postOrder" disabled="{{disabled}}">确定</button>
+	</view>
+
+</view>

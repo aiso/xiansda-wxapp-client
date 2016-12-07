@@ -4,7 +4,7 @@ const Promise = require("../utils/bluebird.min")
 const api = require('request.js')
 const sync = require('../utils/sync')
 
-const AUTH_KEY = 'XSD_AUTH_KEY'
+const AUTH_KEY = 'XSD_AUTH_CLIENT_KEY'
 
 const load = () => {
 	return new Promise((resolve, reject)=>{

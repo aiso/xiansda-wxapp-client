@@ -20,6 +20,8 @@
     "pages/user/index",
     "pages/user/stations",
 
+    "pages/s101/order",
+
     "pages/demo/index"
 
   ],
