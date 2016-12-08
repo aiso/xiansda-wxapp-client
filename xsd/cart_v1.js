@@ -8,17 +8,17 @@ const cart = {
 			console.log(e)
 		}
 	},
-	get(id){
-		return this.items().find(item=>item.id==id)
+	get(agent){
+		return this.items().find(i=>i.id==agent.id)
 	},
-	set(cart){
+	set(agent, quantity){
 		const items = this.items()
-		const item = (!!cart.id)?items.find(i=>i.id==cart.id):null
+		const item = items.find(i=>i.id==agent.id)
 		if(!!item){
-			Object.assign(item, cart)
+			item.quantity = quantity
 		}else{
-			cart.id = new Date().getTime()
-			items.push(cart)
+			const item = Object.assign(agent, {quantity})
+			items.push(item)
 		}
 
 		try {
@@ -27,8 +27,8 @@ const cart = {
 			 console.log(e)
 		}
 	},
-	remove(id){
-		const items = this.items().filter(i=>i.id!=id)
+	remove(agent){
+		const items = this.items().filter(i=>i.id!=agent.id)
 		try {
 		    wx.setStorageSync(CART_KEY, items)
 		} catch (e) {   

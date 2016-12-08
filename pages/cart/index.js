@@ -64,7 +64,7 @@ Page({
   },
   itemOptions(e){
   	wx.showActionSheet({
-  	  itemList: ['查看', '修改', '删除'],
+  	  itemList: ['查看商品', '修改订单', '删除订单'],
   	  success: res => {
   	    if (!res.cancel) {
   	    	const agent = this.data.items[e.currentTarget.dataset.idx]

@@ -49,7 +49,7 @@ const _request = opts => {
   		}
   	}
 	options.url = API_PATH + options.url
-	console.log(options)
+	//console.log(options)
 	wx.request(options)
   })	
 }

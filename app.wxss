@@ -282,6 +282,9 @@
 .mb40{
   margin-bottom:40rpx;
 }
+.mr20{
+  margin-right: 20rpx;
+}
 
 .text-center{
   text-align: center;

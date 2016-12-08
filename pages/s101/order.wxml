@@ -1,17 +1,21 @@
 <view class="page toolbar">
-	<view class="p10 bg-soft">
-		<text class="text-h4 plr10 c-light">单价</text>
-	</view>
-	<view class="p20 text-center">
-		<text class="text-h2">￥{{prod.price}}</text>
-	</view>
+  	<view class="list-item">
+  	  <image class="list-item-thumbnail" src="{{prod.img}}" mode="aspectFill"></image>
+  	  <view class="list-item-content flex-column">
+  	  	<text class="text-h3">{{prod.title}}</text>
+  	  </view>
+  	  <view class="text-center flex-column">
+  	  	<text class="text-h3 c-red text-bold mb5">￥{{prod.price}}</text>
+  	  	<text class="text-h4 c-gray">单价</text>
+  	  </view>
+  	</view>
 	<view class="p10 bg-soft">
 		<text class="text-h4 plr10 c-light">数量</text>
 	</view>
 	<view class="border-bottom flex-row p10">
 		<image bindtap="decreate" class="p20 btn btn-icon" src="/images/icons/minus.png"></image>
 		<view class="flex-auto text-center plr20">
-			<input value="{{quantity}}" bindinput="quantityChange" type="number" class="full-wdith text-h2" />
+			<input value="{{cart.quantity}}" bindinput="quantityChange" type="number" class="full-wdith text-h1" />
 		</view>
 		<image bindtap="increate" class="p20 btn btn-icon" src="/images/icons/plus.png"></image>
 	</view>
@@ -20,7 +24,7 @@
 	</view>
 	<view class="bg-white border-bottom flex-row p30" wx:for="{{agents}}" wx:key="id">
 		<image class="avatar tiny" src="{{item.station.img}}"></image>
-		<navigator class="agent-station plr20" url="../station/map?id={{item.id}}">
+		<navigator class="agent-station plr20" url="../station/map?id={{item.station.id}}">
 			<text class="text-h4 single-line">{{item.station.name}}</text>
 		</navigator>
 		<text class="agent-fee-label">代理费：</text>
@@ -30,15 +34,24 @@
 			<image wx:if="{{!agent || agent.id!=item.id}}"class="btn-icon" src="/images/icons/checkbox-unchecked.png"></image>
 		</view>
 	</view>
+	<view class="p10 bg-soft">
+		<text class="text-h4 plr10 c-light">计算</text>
+	</view>
+	<view class="p20 text-center" wx:if="{{!!agent}}">
+		<text class="text-h3 text-bold">( {{prod.price}} + {{agent.fee}} ) x {{cart.quantity}} = ￥{{cart.amount}}</text>
+	</view>
+	<view class="p20 text-center" wx:if="{{!agent}}">
+		<text class="text-h3 c-light">请先指定代理点</text>
+	</view>
 
 	<view class="toolbar-footer border-top p20 flex-row">
 		<view>
 			<text class="text-h4 c-gray">金额：</text>
 		</view>
 		<view class="flex-auto">
-			<text class="text-bold c-red">￥{{amount}}</text>
+			<text class="text-bold c-red">￥{{cart.amount}}</text>
 		</view>
-		<button size="mini" type="primary" bindtap="postOrder" disabled="{{amount==0}}">确定</button>
+		<button size="mini" type="primary" bindtap="postOrder" disabled="{{cart.amount==0}}">确定</button>
 	</view>
 
 </view>

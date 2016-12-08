@@ -7,19 +7,34 @@ Page({
   	station:null
   },
   onLoad(options){
-  	wx.showToast({icon:'loading', title:'载入中...'})
-  	xsd.api.get('station/'+options.id).then(data=>{
-  	  const station = data.station
-  	  station.location = util.decodeGeohash(station.geohash)
-  	  station.markers = [{
-	      latitude: station.location.lat,
-	      longitude: station.location.lng,
-	      name: station.name,
-	      desc: station.address
-  	  }]
-  	  this.setData({station})
-  	  wx.hideToast()
-  	})
-  	
+
+    xsd.sync.stations.get().then(stations=>{
+      var station = stations.find(s=>s.id==options.id)
+      if(!!station)
+        this.setStation(station)
+      else{
+          wx.showToast({icon:'loading', title:'载入中...'})
+          xsd.api.get('station/'+options.id).then(data=>{
+            this.setStation(data.station)
+          }).finally(()=>{
+            wx.hideToast()
+          })
+      }
+
+    })
   },
+  setStation(s){
+    console.log(s)
+    const location = util.decodeGeohash(s.geohash)
+    const station = Object.assign({
+      location,
+      markers:[{
+        latitude: location.lat,
+        longitude: location.lng,
+        name: s.name,
+        desc: s.address
+      }]
+    }, s)
+    this.setData({station})
+  }
 })

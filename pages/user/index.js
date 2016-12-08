@@ -14,8 +14,5 @@ Page({
     sgStations.get().then(stations=>{
       this.setData({stations})
     })
-  },
-  test(e){
-  	console.log(e.target.dataset.sid)
   }
 })
