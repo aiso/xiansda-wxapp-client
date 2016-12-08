@@ -29,7 +29,7 @@ Page({
 	  			return agent
 	  		})
 
-        const agent = (agents.length == 1)?agents[0]:null
+        const agent = (!!cart.agent)?agents.find(a=>a.id==cart.agent):((agents.length == 1)?agents[0]:null)
 	  		this.setData({agents, agent, cart})
         this.caculate()
 	  	})

@@ -13,12 +13,12 @@
 			</view>
 		</view>
 	  	<view class="cart-item flex-row border-bottom" wx:for="{{items}}" wx:key="id">
-	  	  <image class="cart-item-thumbnail" src="{{item.item.img}}" mode="aspectFill"></image>
+	  	  <image class="cart-item-thumbnail" src="{{item.agent.item.img}}" mode="aspectFill"></image>
 	  	  <view class="cart-item-content flex-column" bindtap="itemOptions" data-idx="{{index}}">
-	  	  	<text class="text-h3 single-line">{{item.item.title}}</text>
+	  	  	<text class="text-h3 single-line mb5">{{item.agent.item.title}}</text>
 	  	  	<view class="flex-row">
-	  	  		<text class="text-h4 c-gray" style="width:260rpx">{{item.station.name}}</text>
-	  	  		<text class="flex-auto text-h4 c-red text-bold text-right">￥{{item.amount}}</text>
+	  	  		<text class="cart-item-amount ib text-h4 text-bold">￥{{item.amount}}</text>
+	  	  		<text class="text-h4 cart-item-station c-gray single-line" >{{item.station.name}}</text>
 	  	  	</view>
 	  	  </view>
 	  	  <text class="text-h3 c-gray text-bold text-center" style="width:90rpx">x{{item.quantity}}</text>

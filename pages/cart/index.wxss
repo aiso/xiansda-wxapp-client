@@ -1,5 +1,5 @@
 .cart-item{
-	padding:30rpx;
+	padding:20rpx;
 }
 .cart-item-thumbnail{
   background-color: #eee;
@@ -7,6 +7,12 @@
   height:90rpx;
 }
 .cart-item-content{
-  padding-left:30rpx;
-	width:400rpx;
+  padding-left:20rpx;
+	width:420rpx;
+}
+.cart-item-station{
+	width:420rpx;
+}
+.cart-item-amount{
+	width:200rpx;
 }

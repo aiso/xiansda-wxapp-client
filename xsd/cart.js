@@ -3,7 +3,7 @@ const CART_KEY = "XSD_CART"
 const cart = {
 	items(){
 		try {
-		  return wx.getStorageSync(CART_KEY)||[]
+		  return (wx.getStorageSync(CART_KEY)||[]).sort((a,b)=>(a.id-b.id))
 		} catch (e) {
 			console.log(e)
 		}
