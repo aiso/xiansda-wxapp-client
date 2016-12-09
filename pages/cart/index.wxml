@@ -17,7 +17,7 @@
 	  	  <view class="cart-item-content flex-column" bindtap="itemOptions" data-idx="{{index}}">
 	  	  	<text class="text-h3 single-line mb5">{{item.agent.item.title}}</text>
 	  	  	<view class="flex-row">
-	  	  		<text class="cart-item-amount ib text-h4 text-bold">￥{{item.amount}}</text>
+	  	  		<text class="cart-item-amount ib text-h4 text-bold">￥{{item.agent.amount}}</text>
 	  	  		<text class="text-h4 cart-item-station c-gray single-line" >{{item.station.name}}</text>
 	  	  	</view>
 	  	  </view>

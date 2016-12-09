@@ -57,10 +57,10 @@ Page({
   caculate(){
   	var amount = 0.00
     var allSelected = true
-  	this.data.items.forEach(agent=>{
-      if(agent.selected)
-  		  amount += agent.amount*agent.quantity
-      allSelected &= agent.selected
+  	this.data.items.forEach(item=>{
+      if(item.selected)
+  		  amount += item.agent.amount*item.quantity
+      allSelected &= item.selected
   	})
   	this.setData({amount:amount.toFixed(2), disabled:amount<=0, allSelected})
   },
@@ -71,7 +71,7 @@ Page({
   	    if (!res.cancel) {
   	    	const cart = this.data.items[e.currentTarget.dataset.idx]
   	    	if(res.tapIndex == 0)
-  	    		wx.navigateTo({url:'../index/item?id='+cart.item.id})
+  	    		wx.navigateTo({url:'../index/item?id='+cart.agent.item.id})
   	    	else if(res.tapIndex == 1)
   	    		wx.navigateTo({url:'../s' + cart.agent.item.service + '/order?id='+cart.agent.item.id+'&cart='+cart.id})
         	else if(res.tapIndex == 2){
@@ -92,15 +92,14 @@ Page({
   checkout(){
     const postItems = this.data.items.filter(i=>i.selected==true).map(item=>{
       return {
-        agent:item.id,
-        station:item.station.id,
-        item:item.item.id,
-        price:item.item.price,
-        fee:item.fee,
-        strategy:item.strategy,
+        agent:item.agent.id,
+        price:item.agent.item.price,
+        fee:item.agent.fee,
+        strategy:item.agent.strategy,
         quantity:item.quantity
       }
     })
+
     xsd.api.post("client/cart", {items:postItems}).then(data=>{
       console.log(data);
     })

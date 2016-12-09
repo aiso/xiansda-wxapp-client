@@ -5,7 +5,6 @@
     "pages/logs/logs",
 
     "pages/cart/index",
-    "pages/cart/order",
 
     "pages/station/station",
     "pages/station/list",

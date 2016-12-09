@@ -12,4 +12,7 @@
   <view class="pane border-bottom" bindtap="cleanStorage" >
     清空STORAGE
   </view>
+  <view class="pane border-bottom" bindtap="createUUID" >
+    {{uuid}}
+  </view>
 </view>

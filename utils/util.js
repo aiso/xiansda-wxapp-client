@@ -1,4 +1,5 @@
 const geohash = require('./geohash')
+const UUID = require('./uuid')
 
 function formatTime(date) {
   var year = date.getFullYear()
@@ -24,7 +25,10 @@ function decodeGeohash(hash){
     return {lng:latlng.longitude[1], lat:latlng.latitude[1]}
 }
 
+
+
 module.exports = {
   formatTime,
-  decodeGeohash
+  decodeGeohash,
+  uuid:new UUID()
 }
